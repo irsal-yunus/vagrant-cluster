@@ -1,5 +1,11 @@
 #!/bin/bash -x
-rancher_server_ip=${1:-172.22.101.101}
+
+export DEBIAN_FRONTEND=noninteractive
+curl -sL https://releases.rancher.com/install-docker/${docker_version}.sh | sh
+
+sudo usermod -aG docker ${username}
+
+rancher_server_ip=${1:-193.2.2.4}
 admin_password=${2:-password}
 curlimage="appropriate/curl"
 jqimage="stedolan/jq"

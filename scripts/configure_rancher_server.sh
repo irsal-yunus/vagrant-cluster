@@ -1,6 +1,12 @@
 #!/bin/bash -x
 
-rancher_ip="172.22.101.101"
+export DEBIAN_FRONTEND=noninteractive
+curl -sL https://releases.rancher.com/install-docker/${docker_version}.sh | sh
+
+curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo usermod -aG docker ${username} 
+
+rancher_ip="193.2.2.4"
 admin_password=${1:-password}
 rancher_version=${2:-stable}
 k8s_version=$3
